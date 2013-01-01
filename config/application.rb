@@ -1,5 +1,9 @@
 require File.expand_path('../boot', __FILE__)
 
+if Rails.env == "production"
+  config.middleware.use("Rack::GoogleAnalytics", :web_property_id => "UA-0000000-1")
+end
+
 require 'rails/all'
 
 if defined?(Bundler)
