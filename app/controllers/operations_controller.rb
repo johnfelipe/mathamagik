@@ -1,9 +1,5 @@
 include OperationsHelper
 class OperationsController < ApplicationController
-@count = "0"
-@top = Array.new
-@bottom =Array.new
-@symbol = ""
 	def new
 		puts "Yo, operation"
 		puts params[:count]
@@ -52,9 +48,11 @@ class OperationsController < ApplicationController
 
 	def solution
 		puts "tops is" + @bottom
+		redirect_to 'home'
 	end
 
 	def more
+		redirect_to 'home'
 	end
 
 end
