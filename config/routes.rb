@@ -1,4 +1,14 @@
 Methamagic::Application.routes.draw do
+root to: 'static_pages#home'
+
+get "static_pages/home"
+post "static_pages/new"
+get "operations/new"
+post "operations/new"
+
+match '/solution', to:'operations#solution'
+match '/more',     to: 'operations#more'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

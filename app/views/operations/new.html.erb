@@ -1,0 +1,105 @@
+<!--
+<p> <%= @operation %> </p>
+<p> <%= @count %> </p>
+-->
+
+<div class="container">
+
+<% count = @top.count %>
+<% remaining_spans=2 %>
+<% i = 0 %>
+
+<% remaining_spans =2 %> <!-- how many to add to get to TOTAL_SPANS %>
+
+<!--% @top.each_with_index do |element, index| %-->
+
+<% while (i < count) %>
+<%count%>
+<div class="row">
+<!-- pluck items from the top till we reach 5 -->
+<% for k in (0..MAX_PER_ROW-1) %>
+	<div class="span2">
+		<% if (@top[k+i] > @bottom[k+i]) %>
+				&nbsp;&nbsp;<%= @top[k+i]  %>
+		<%else%>
+				&nbsp;&nbsp;<%= @bottom[k+i]  %>
+		<%end%>
+
+	</div>
+<% end %>
+	<!-- close that row.. start a new one -->
+	<% remaining_spans= (TOTAL_SPANS - ((MAX_PER_ROW)*SPANS_PER_NUM)) %>
+	<div class=<%="span"+remaining_spans.to_s%>> </div>
+</div>
+<script>
+alert(@symbol);
+</script>
+<div class="row">
+	<% for  j in (0..(MAX_PER_ROW-1)) %>
+		<div class ="span2">
+			<script>
+			var numeric = /\d+/.exec(<%=@symbol%>);
+			var decoded= String.fromCharCode(numeric);
+			document.write(decoded);
+			</script>
+			<% if (@top[j+i] < @bottom[j+i]) %>
+				<%= @top[j+i]  %>
+			<%else%>
+				<%= @bottom[j+i]  %>
+			<%end%>
+		</div>
+	<% end %> <!-- end for -->
+    <div class=<%="span"+remaining_spans.to_s%>></div>
+</div>
+
+<!-- Space for the results.. -->
+	<div class="row">
+
+	<% for  j in (0..(MAX_PER_ROW-1)) %>
+
+		<div class="span2">
+			&nbsp;&nbsp;&#x23af;&#x23af;&#x23af;&#x23af;
+		</div>
+	<%end%>
+	</div>
+
+	<div class="row">
+		<div class="span12">
+			</div>
+	</div>
+
+	<div class="row">
+
+	<% for  j in (0..(MAX_PER_ROW-1)) %>
+
+		<div class="span2">
+			&nbsp;&nbsp;&#x23af;&#x23af;&#x23af;&#x23af;
+		</div>
+	<%end%>
+	</div>
+
+
+
+	<div class="row">
+		<div class="span12">
+			</div>
+
+
+<% i=i+k+1%>
+
+<%end %> <!-- to end the top loop -->
+
+
+<div class="row">
+	<div class="span3">
+ 	<%= link_to 'Solutions', solution_path %>
+	</div>
+	<div class="span3">
+ 	<%= link_to 'gimme more', more_path%>
+ 	</div>
+	<div class="span3">
+ 	<%= link_to 'Home', root_path %>
+ 	</div>
+</div>
+</div>
+

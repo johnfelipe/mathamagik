@@ -1,0 +1,74 @@
+// Place all the styles related to the operations controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.container {
+	margin-left: 40px;
+	margin-top: 40px;
+}
+
+.btn-custom {
+  background-color: hsl(193, 32%, 49%) !important;
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#b8d3da", endColorstr="#5493a4");
+  background-image: -khtml-gradient(linear, left top, left bottom, from(#b8d3da), to(#5493a4));
+  background-image: -moz-linear-gradient(top, #b8d3da, #5493a4);
+  background-image: -ms-linear-gradient(top, #b8d3da, #5493a4);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #b8d3da), color-stop(100%, #5493a4));
+  background-image: -webkit-linear-gradient(top, #b8d3da, #5493a4);
+  background-image: -o-linear-gradient(top, #b8d3da, #5493a4);
+  background-image: linear-gradient(#b8d3da, #5493a4);
+  border-color: #5493a4 #5493a4 hsl(193, 32%, 41.5%);
+  color: #333 !important;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.49);
+  -webkit-font-smoothing: antialiased;
+  margin-top:30px;
+  min-width: 200px;
+}
+
+.span1 {
+font-family: 'Gloria Hallelujah', cursive;
+	margin-left:20px;
+font-size: 160%;
+}
+
+.span3 {
+margin-top: 60px;
+	font-family: 'Gloria Hallelujah', cursive;
+	margin-left:20px;
+font-size: 160%;
+}
+.span12 {
+	height: 20px;
+}
+
+.span2 {
+//font-family: 'Gloria Hallelujah', cursive;
+font-family: 'Droid Sans Mono', sans-serif;
+
+	margin-left:20px;
+font-size: 160%;
+}
+
+#operations {
+position:absolute;
+	width: 1000px;
+	height: 600px;
+}
+
+.top  {
+POSITION:relative;
+FLOAT:LEFT;
+WIDTH:50px;
+BACKGROUND-COLOR:#BBB;
+display: inline;
+}
+
+
+.bottom {
+POSITION:relative;
+WIDTH:50px;
+vertical-align: middle;
+top: 20px;
+BACKGROUND-COLOR:#ABCDEF;
+}

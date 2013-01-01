@@ -1,0 +1,90 @@
+<div class="center hero-unit">
+  <h1>Matha Magic</h1>
+
+  <h2>
+   Generate some math tests for your kids
+  </h2>
+
+  <!--%= link_to "Sign up now!", '#', class: "btn btn-large btn-primary" %-->
+</div>
+
+<!--%= link_to image_tag("rails.png", alt: "Rails"), 'http://rubyonrails.org/' %-->
+<div class="container">
+  
+  <div class="row">
+     <div class="span4">
+       <div class="bigtext">
+              Generate 
+        </div>
+      </div>
+    <div class="span4">
+        <%= form_tag(:controller => "operations", :action => "new") do %>
+        <%= select_tag "operation", options_for_select(%w{addition substracttion multiplication division} )%>
+    </div>
+     <div class="span4">
+        <div class="bigtext">
+            problems
+        </div>
+      </div>
+  </div>
+ 
+  <div class="row">
+
+
+      <div class="span4">
+        <div class="bigtext">
+            using
+        </div>
+      </div>
+      <div class="span4">
+          <%= select_tag "count", options_for_select(%w{ 1 2 3 4 }) %>
+      </div>
+      <div class="span4">
+        <div class="bigtext">
+            digits
+        </div>
+      </div>
+<p>
+</div>
+
+<div class="row">
+</div>
+<div class="row">
+</div>
+<p> </p>
+  <p></p>
+    <p></p>
+
+<div class="row">
+
+<div class="span11 pagination-centered">
+
+<%= submit_tag "Generate!", class: "btn btn-custom btn-large btn-primary" %>
+
+<% end%>
+</div>
+<div class="span1"> </div>
+</div>
+</div>
+<!--
+<p> Generate   
+<form action="/static_pages/new" method="post" id="new">
+<select name="operation">
+  <option value="addition">addition</option>
+  <option value="substraction">substraction</option>
+  <option value="multiplication">multiplication</option>
+  <option value="division">division</option>
+</select> 
+
+using 
+<select name="value">
+  <option value="1">1</option>
+  <option value="2">2</option>
+  <option value="3">3</option>
+  <option value="4">4</option>
+</select> 
+
+digits </p>
+<input type="submit" name="Generate" class="btn btn-large btn-primary">  </input>
+</form>
+-->
