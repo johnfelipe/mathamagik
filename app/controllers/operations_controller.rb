@@ -47,12 +47,12 @@ class OperationsController < ApplicationController
 	end
 
 	def solution
-		puts "tops is" + @bottom
-		redirect_to '/home'
+		#puts "tops is" + @bottom
+		redirect_to '/'
 	end
 
 	def more
-		redirect_to '/home'
+		redirect_to '/'
 	end
 
 end
