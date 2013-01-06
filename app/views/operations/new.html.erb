@@ -1,9 +1,3 @@
-<!--
-<p> <%= @operation %> </p>
-<p> <%= @count %> </p>
--->
-
-
 
 <div class="container">
 
@@ -21,21 +15,22 @@
 <!-- pluck items from the top till we reach 5 -->
 <% for k in (0..MAX_PER_ROW-1) %>
 	<div class="span2">
-		<% if (@top[k+i] > @bottom[k+i]) %>
+		<!--% if (@top[k+i] > @bottom[k+i]) %-->
 				&nbsp;&nbsp;<%= @top[k+i]  %>
-		<%else%>
+		<!-- 
+		%else%>
 				&nbsp;&nbsp;<%= @bottom[k+i]  %>
-		<%end%>
 
+		-->
 	</div>
-<% end %>
+<%end%>
+
+
 	<!-- close that row.. start a new one -->
 	<% remaining_spans= (TOTAL_SPANS - ((MAX_PER_ROW)*SPANS_PER_NUM)) %>
 	<div class=<%="span"+remaining_spans.to_s%>> </div>
 </div>
-<script>
-alert(@symbol);
-</script>
+
 <div class="row">
 	<% for  j in (0..(MAX_PER_ROW-1)) %>
 		<div class ="span2">
@@ -64,11 +59,44 @@ alert(@symbol);
 		</div>
 	<%end%>
 	</div>
+	<%= javascript_include_tag "application" %>
 
-	<div class="row">
-		<div class="span12">
-			</div>
-	</div>
+		<div class="row">
+			<!-- adds the answer textarea -->
+			<% for  j in (0..(MAX_PER_ROW-1)) %>	
+					
+				<div class="span2">
+					<div class="tick<%=j%>">
+						<!--% lbl = "lb" + j.to_s %-->
+							<!--%=image_tag(lbl,"")%-->
+					</div>
+
+					<div class="answer">
+						<% tarea = 'ta' + j.to_s %>
+						<!--textarea></textarea-->
+						<%= text_area_tag(tarea, nil) %>
+							<!--$("#<%=tarea%>").val(data)})});-->
+
+						<script>
+						<!--alert ($("<%=tarea%>"));-->
+						$("#<%=tarea%>").change(function(){
+							var url = "/answer";
+							var el = "#<%=tarea%>";
+							var answer = $(el).val();
+							var params = {element: el, offset:<%=j%>, value: answer};
+							 $.get(url, params,function(response){ 
+									alert(response); 
+									}, 'script'
+								)
+							}
+						);
+						</script>
+					</div>
+				</div>
+			<%end%>
+			<div class="span2"> </div>
+
+		</div>
 
 	<div class="row">
 
@@ -80,12 +108,11 @@ alert(@symbol);
 	<%end%>
 	</div>
 
-
-
 	<div class="row">
 		<div class="span12">
-			</div>
-
+			
+		</div>
+	</div>
 
 <% i=i+k+1%>
 
@@ -93,10 +120,6 @@ alert(@symbol);
 
 
 <div class="row">
-
-	<div class="span3">
- 	<%= link_to 'Home', root_path %>
- 	</div>
  		<div class="span3">
  	<%= link_to 'Solutions', solution_path %>
 	</div>

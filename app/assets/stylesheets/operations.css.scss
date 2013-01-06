@@ -7,6 +7,35 @@
 	margin-top: 40px;
 }
 
+textarea {
+   font-family: inherit;
+   font-size: 16px;
+   width: inherit;
+   height: inherit;
+   //border: none;
+   placeholder:your answer;
+   //outline: none;
+   resize:none;
+   //border-color: transparent;
+}
+
+.answer {
+  width: 50px;
+  height: 25px;
+  margin-left: 30px;
+  margin-top: 0px;
+  margin-bottom: 10px;
+  font-family: 'Droid Sans Mono', sans-serif;
+}
+
+.tick {
+  width: 10px; 
+  height: 5px;
+  vertical-align:bottom;
+  font-family: 'Droid Sans Mono', sans-serif;
+}
+
+
 .btn-custom {
   background-color: hsl(193, 32%, 49%) !important;
   background-repeat: repeat-x;

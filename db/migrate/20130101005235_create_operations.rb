@@ -1,5 +1,5 @@
 class CreateOperations < ActiveRecord::Migration
-	serialize: top
+	
 	
   def change
     create_table :operations do |t|

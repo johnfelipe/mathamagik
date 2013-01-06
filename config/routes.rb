@@ -1,4 +1,6 @@
 Methamagic::Application.routes.draw do
+  get "users/new"
+
 root to: 'static_pages#home'
 
 get "static_pages/home"
@@ -6,8 +8,15 @@ post "static_pages/new"
 get "operations/new"
 post "operations/new"
 
+match '/signup', to: 'users#new'
+match '/answer', to: 'operations#answer'
+
 match '/solution', to:'operations#solution'
 match '/more',     to: 'operations#more'
+match '/help', to: 'static_pages#help'
+match '/about', to: 'static_pages#about'
+match '/contact', to: 'static_pages#contact'
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
