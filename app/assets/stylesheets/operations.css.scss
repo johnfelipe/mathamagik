@@ -19,6 +19,7 @@ textarea {
    //border-color: transparent;
 }
 
+
 .answer {
   width: 50px;
   height: 25px;
@@ -28,9 +29,8 @@ textarea {
   font-family: 'Droid Sans Mono', sans-serif;
 }
 
-.tick {
-  width: 10px; 
-  height: 5px;
+.iconanswer {
+  float: left;
   vertical-align:bottom;
   font-family: 'Droid Sans Mono', sans-serif;
 }

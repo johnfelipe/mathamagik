@@ -1,2 +1,3 @@
-$("<%=params[:element]%>").val('<%= escape_javascript render("answer") %>');
-$(".tick<%=params[:offset]%>").append('<%= escape_javascript render("showimage") %>');
+//$("<%=params[:element]%>").val('<%= escape_javascript render("answer") %>');
+$("#tick<%=params[:offset]%>").empty();
+$("#tick<%=params[:offset]%>").append('<%= escape_javascript render("showimage") %>');

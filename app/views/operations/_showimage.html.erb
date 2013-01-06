@@ -1,1 +1,7 @@
-<%=image_tag "hound.gif"%>
+<% offset = params[:offset].to_i %>
+<% ans = params[:value].to_i %>
+<% if (ans == (@op.top[offset] + @op.bottom[offset])) %>
+	<%=image_tag "ok.png"%>
+<%else%>
+	<%=image_tag "sorry.png"%>
+<%end%>
