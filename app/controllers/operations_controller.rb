@@ -2,6 +2,9 @@ include OperationsHelper
 
 class OperationsController < ApplicationController
 	def new
+		op = Operation.new
+
+
 		puts "Yo, operation"
 		puts params[:count]
 		puts params[:operation]
@@ -11,17 +14,21 @@ class OperationsController < ApplicationController
 		puts "OPERATION..........." + @operation
 		if (@operation == "addition")
 			@symbol = 0x002b
+			op.optype = OP_ADDITION
 		elsif (@operation=="substraction")
 			@symbol = 0x2212
+			op.optype = OP_SUBSTRACTION
 		elsif (@operation == "division")
 			@symbol = 0x00f7
+			op.optype = OP_DIVISION
 		elsif (@operation == "multiplication")
 			@symbol = 0x00d7
+			op.optype = OP_MULTIPLICATION
 		else
 			@symbol = "??"
 		end
+
 		generate(@count)
-		op = Operation.new
 		op.top = @top
 		op.bottom = @bottom
 		op.save
@@ -31,6 +38,7 @@ class OperationsController < ApplicationController
 	def answer
 		puts "YO ANSWER+++++++++++++++++++++"
 		@op = Operation.find_by_cookie(cookies[:cookie])
+		puts @op.optype
 		#@op.top[0] + @op.bottom[0]
 		respond_to do |format|
 			format.html {redirect_to "/"}
@@ -67,7 +75,6 @@ class OperationsController < ApplicationController
 			#puts "++ " + i.to_s + "++"
 			#puts "top" + @top[i].to_s + "bottom" + @bottom[i].to_s
 			if (@top[i] < @bottom[i])
-				puts "switch.."
 				tmp = @top[i]
 				@top[i] = @bottom[i]
 				@bottom[i] = tmp

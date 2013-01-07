@@ -1,7 +1,29 @@
 <% offset = params[:offset].to_i %>
 <% ans = params[:value].to_i %>
-<% if (ans == (@op.top[offset] + @op.bottom[offset])) %>
-	<%=image_tag "ok.png"%>
-<%else%>
-	<%=image_tag "sorry.png"%>
+<% if(@op.optype == OP_ADDITION) %>
+	<% if(ans == (@op.top[offset] + @op.bottom[offset])) %>
+		<%=image_tag "ok.png"%>
+	<%else%>
+		<%=image_tag "sorry.png"%>
+	<%end%>
+<% elsif(@op.optype == OP_SUBSTRACTION) %>
+	<% if(ans == (@op.top[offset] - @op.bottom[offset])) %>
+		<%=image_tag "ok.png"%>
+	<%else%>
+		<%=image_tag "sorry.png"%>
+	<%end%>
+<% elsif(@op.optype == OP_MULTIPLICATION) %>
+	<% if (ans == (@op.top[offset] * @op.bottom[offset])) %>
+		<%=image_tag "ok.png"%>
+	<%else%>
+		<%=image_tag "sorry.png"%>
+	<%end%>
+<% elsif(@op.optype == OP_DIVISION) %>
+	<% if(ans == (@op.top[offset]/@op.bottom[offset])) %>
+		<%=image_tag "ok.png"%>
+	<%else%>
+		<%=image_tag "sorry.png"%>
+	<%end%>
+<% else %>
+		<%=image_tag "peachy.jpeg"%>
 <%end%>
