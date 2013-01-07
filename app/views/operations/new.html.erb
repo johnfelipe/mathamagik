@@ -63,9 +63,12 @@
 					
 					
 					//$("#<%=tarea%>").change(function(){
-					$('#<%=tarea%>').keydown(function(e){
+					//$('#<%=tarea%>').keydown(function(e){
+
+				$("#<%=tarea%>").bind('keydown focusout', function(e){
+				if (e.type === "keydown") {
 					if ((e.which === 9) || (e.which === 13)) {
-						if (e.which == 13) {
+					if (e.which === 13) {
 						e.preventDefault();
 					}
 					var url = "/answer";
@@ -74,11 +77,26 @@
 					var params = {element: el, offset:<%=index%>, value: answer};
 					$.get(url, params,function(response){ 
 									//alert(response); 
-							}, 'script'
-						)
+					}, 'script'
+					)
 					}
 				}
-					);
+				if (e.type == "focusout") {
+					var url = "/answer";
+					var el = "#<%=tarea%>";
+					var answer = $(el).val();
+					var params = {element: el, offset:<%=index%>, value: answer};
+					$.get(url, params,function(response){ 
+									//alert(response); 
+					}, 'script'
+					)
+					}});
+
+				
+
+			
+			
+					
 				</script>
 			</div>
 		</div>
