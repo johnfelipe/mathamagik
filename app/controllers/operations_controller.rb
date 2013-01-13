@@ -1,36 +1,27 @@
-include OperationsHelper
+include ApplicationHelper
 
 class OperationsController < ApplicationController
 	def new
 		op = Operation.new
-
-
 		puts "Yo, operation"
 		puts params[:count]
 		puts params[:operation]
 		@operation = params[:operation]
 		@count = params[:count]
 		@symbol = ""
-		puts "OPERATION..........." + @operation
-		if (@operation == "addition")
-			@symbol = 0x002b
-			op.optype = OP_ADDITION
-		elsif (@operation=="substraction")
-			@symbol = 0x2212
-			op.optype = OP_SUBSTRACTION
-		elsif (@operation == "division")
-			@symbol = 0x00f7
-			op.optype = OP_DIVISION
-		elsif (@operation == "multiplication")
-			@symbol = 0x00d7
-			op.optype = OP_MULTIPLICATION
-		else
-			@symbol = "??"
+		if (@operation == nil)
+			#dont allow direct access to page
+			redirect_to '/'
+			return
 		end
-
+		ret = getoperation(@operation)
+		optype = ret[0]
+		symbol
+		puts "OPERATION..........." + op
 		generate(@count)
 		op.top = @top
 		op.bottom = @bottom
+		op.optype = optype
 		op.save
 		cookies.permanent[:cookie] = op.cookie
 	end

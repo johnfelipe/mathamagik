@@ -1,0 +1,5 @@
+//'<%=escape_javascript render("opactions")%>'.hide().appendTo($(".tablestart")).normal();
+//$(".tablestart").append(new_item);
+//new_item.slideDown();
+$(".tablestart").empty();
+$(".tablestart").append('<%= escape_javascript render("opactions") %>').hide().show();

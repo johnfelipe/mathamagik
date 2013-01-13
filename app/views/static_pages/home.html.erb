@@ -3,68 +3,96 @@
 
   <h2>
    Generate some math tests for your kids
-  </h2>
+ </h2>
 
-  <!--%= link_to "Sign up now!", '#', class: "btn btn-large btn-primary" %-->
+ <!--%= link_to "Sign up now!", '#', class: "btn btn-large btn-primary" %-->
 </div>
 
 <!--%= link_to image_tag("rails.png", alt: "Rails"), 'http://rubyonrails.org/' %-->
 <div class="container">
-  
+
   <div class="row">
-     <div class="span4">
-       <div class="bigtext">
-              Generate 
-        </div>
-      </div>
-    <div class="span4">
-        <%= form_tag(:controller => "operations", :action => "new") do %>
-        <%= select_tag "operation", options_for_select(%w{addition substraction multiplication division} )%>
+   <div class="span4">
+     <div class="bigtext">
+      Generate 
     </div>
-     <div class="span4">
-        <div class="bigtext">
-            problems
-        </div>
-      </div>
   </div>
+  <div class="span4">
+    <%= form_tag(:controller => "operations", :action => "new") do %>
+    <%= select_tag "operation", options_for_select(%w{addition substraction multiplication division} )%>
+  </div>
+  <script>
+  $(document).ready(function(){
+    var op = $(this).find('option:selected').val();
+      var url = "/opactions";
+      var params = {value: op};
+      $.get(url, params,function(response){ 
+                  //alert(response); 
+          }, 'script'
+          )
+  });
+$("#operation").bind('change load ready', (function(){
+      var op = $(this).find('option:selected').val();
+      var url = "/opactions";
+      var params = {value: op};
+      $.get(url, params,function(response){ 
+                  //alert(response); 
+          }, 'script'
+          )
+          }
+        ));
+</script>
+
+
+
+  <div class="span4">
+    <div class="bigtext">
+      problems
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="span4">
+    <div class="bigtext">
+      using
+    </div>
+  </div>
+  <div class="span4">
+    <%= select_tag "count", options_for_select(%w{ 1 2 3 4 }) %>
+  </div>
+  <div class="span4">
+    <div class="bigtext">
+      digits
+    </div>
+  </div>
+  <p>
+</div>
+
+<div class="row tablestart"></div>
+<!--div class="tablestart"--> 
+
+
  
+
+  <div class="row">
+  </div>
+  <div class="row">
+  </div>
+  <p> </p>
+  <p></p>
+  <p></p>
+
   <div class="row">
 
+    <div class="span11 pagination-centered">
 
-      <div class="span4">
-        <div class="bigtext">
-            using
-        </div>
-      </div>
-      <div class="span4">
-          <%= select_tag "count", options_for_select(%w{ 1 2 3 4 }) %>
-      </div>
-      <div class="span4">
-        <div class="bigtext">
-            digits
-        </div>
-      </div>
-<p>
-</div>
+      <%= submit_tag "Generate!", class: "btn btn-custom btn-large btn-primary" %>
 
-<div class="row">
-</div>
-<div class="row">
-</div>
-<p> </p>
-  <p></p>
-    <p></p>
-
-<div class="row">
-
-<div class="span11 pagination-centered">
-
-<%= submit_tag "Generate!", class: "btn btn-custom btn-large btn-primary" %>
-
-<% end%>
-</div>
-<div class="span1"> </div>
-</div>
+      <% end%>
+    </div>
+    <div class="span1"> </div>
+  </div>
 </div>
 <!--
 <p> Generate   

@@ -10,6 +10,7 @@ post "operations/new"
 
 match '/signup', to: 'users#new'
 match '/answer', to: 'operations#answer'
+match '/opactions', to: 'static_pages#opactions'
 
 match '/solution', to:'operations#solution'
 match '/more',     to: 'operations#more'
