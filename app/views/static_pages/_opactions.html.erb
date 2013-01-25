@@ -1,9 +1,9 @@
 <% if @op == OP_ADDITION %>
 <% options = ['Numerator is bigger than Denominator'] %>
 <%elsif @op == OP_SUBSTRACTION%>
-<%options = ['Numerator is biiger than Denominator', 'Include double borrowing'] %>
+<%options = ['Numerator is bigger than Denominator', 'Include double borrowing'] %>
 <%elsif @op == OP_MULTIPLICATION%>
-<%options = ['Numerator is bigger than Denominator', 'Include double borrowing']%>
+<%options = ['Numerator is bigger than Denominator']%>
 <%elsif @op == OP_DIVISION%>
 <%options = ['Numerator is bigger than Denominator', 'Allow Fractions']%>
 <%else%>
@@ -16,15 +16,17 @@
 
 <table class="table table-bordered">
 <% for j in (0..options.size-1) %>
+        <% elid = "option" + j.to_s%>
+
           <tr>
             <td>
               <div class="modifer">
-                <%= radio_button_tag options[j], 'no' %>
+                <%= radio_button_tag elid, 'no' %>
               </div>
             </td>
             <td>
               <div class="modifier-text">
-                <%= label_tag options[j] %>
+                <%= label_tag elid, options[j] %>
               </div>
             </td>
           </tr>

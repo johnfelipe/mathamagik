@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130107145741) do
+ActiveRecord::Schema.define(:version => 20130116021518) do
 
   create_table "operations", :force => true do |t|
     t.text     "top"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(:version => 20130107145741) do
     t.date     "createtime"
     t.string   "cookie"
     t.integer  "optype"
+    t.integer  "numdigits"
   end
 
   create_table "settings", :force => true do |t|

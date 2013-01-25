@@ -1,0 +1,113 @@
+
+		</div>
+	<%end%>
+	<!-- close that row.. start a new one -->
+	<% remaining_spans= (TOTAL_SPANS - ((MAX_PER_ROW)*SPANS_PER_NUM)) %>
+	<!-- add in the remaining spans to complete the row -->
+	<div class=<%="span"+remaining_spans.to_s%>> </div>
+</div>
+
+<!-- the second row.. operator and value -->
+<div class="row">
+	<% for  j in (0..(MAX_PER_ROW-1)) %>
+		<div class ="span2">
+			
+			<!-- figure out if we need to leave some spaces to account for differences in size between numerator and denom -->
+			<% numtop = numDigits(@top[j+i]) %>
+			<% numbot = numDigits(@bottom[j+i])%>
+			<% numdiff = numtop - numbot %>
+			
+			<% for l in (0..numdiff-1) %>
+			<% puts "putting 1 space.." %>   
+			&#x200A;
+			 <%end%>
+			 <%=@bottom[j+i]%>
+			
+		</div>
+	<% end %> <!-- end for -->
+    <div class=<%="span"+remaining_spans.to_s%>></div>
+</div>
+
+<!-- Space for the results.. -->
+<div class="row">
+	<% for  j in (0..(MAX_PER_ROW-1)) %>
+		<div class="span2">
+			&nbsp;&nbsp;&#x23af;&#x23af;&#x23af;&#x23af;
+		</div>
+	<%end%>
+	 <div class=<%="span"+remaining_spans.to_s%>></div>
+</div>
+
+	<%= javascript_include_tag "application" %>
+
+<div class="row">
+	<!-- adds the answer textarea -->
+	<% for  j in (0..(MAX_PER_ROW-1)) %>	
+		<div class="span2">
+			<% index = j+i%>
+			<div class="iconanswer" id="tick<%=index%>"></div>
+			<div class="answer", "pull-right">
+				<% tarea = 'ta' + index.to_s %>
+				<%= text_area_tag(tarea, nil) %>
+				<script>
+					
+					
+					//$("#<%=tarea%>").change(function(){
+					//$('#<%=tarea%>').keydown(function(e){
+
+				$("#<%=tarea%>").bind('keydown focusout', function(e){
+				if (e.type === "keydown") {
+					if ((e.which === 9) || (e.which === 13)) {
+					if (e.which === 13) {
+						e.preventDefault();
+					}
+					var url = "/answer";
+					var el = "#<%=tarea%>";
+					var answer = $(el).val();
+					var params = {element: el, offset:<%=index%>, value: answer};
+					$.get(url, params,function(response){ 
+									//alert(response); 
+					}, 'script'
+					)
+					}
+				}
+				if (e.type == "focusout") {
+					var url = "/answer";
+					var el = "#<%=tarea%>";
+					var answer = $(el).val();
+					var params = {element: el, offset:<%=index%>, value: answer};
+					$.get(url, params,function(response){ 
+									//alert(response); 
+					}, 'script'
+					)
+					}});
+
+				
+
+			
+			
+					
+				</script>
+			</div>
+		</div>
+	<%end%>
+	<div class=<%="span"+remaining_spans.to_s%>></div>
+</div>
+
+<div class="row">
+	<%for  j in (0..(MAX_PER_ROW-1))%>
+		<div class="span2">
+			&nbsp;&nbsp;&#x23af;&#x23af;&#x23af;&#x23af;
+		</div>
+	<%end%>
+	<div class=<%="span"+remaining_spans.to_s%>></div>
+</div>
+
+<div class="row">
+	<div class="span12">		
+	</div>
+</div>
+
+<% i=i+k+1%>
+
+<%end %> <!-- to end the top loop -->

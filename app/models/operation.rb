@@ -3,6 +3,7 @@ class Operation < ActiveRecord::Base
   attr_accessible :bottom, :top
   serialize :top
   serialize :bottom
+  serialize :options
 
   private
     def create_clientkey

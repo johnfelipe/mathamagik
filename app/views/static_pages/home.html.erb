@@ -11,108 +11,96 @@
 <!--%= link_to image_tag("rails.png", alt: "Rails"), 'http://rubyonrails.org/' %-->
 <div class="container">
 
-  <div class="row">
-   <div class="span4">
-     <div class="bigtext">
-      Generate 
+
+  <%= form_tag(:controller => "operations", :action => "new") do -%>
+  <div class="form_tag">
+    <div class="row">
+     <div class="span4">
+       <div class="bigtext">
+        Generate 
+      </div>
     </div>
-  </div>
-  <div class="span4">
-    <%= form_tag(:controller => "operations", :action => "new") do %>
-    <%= select_tag "operation", options_for_select(%w{addition substraction multiplication division} )%>
-  </div>
-  <script>
-  $(document).ready(function(){
-    var op = $(this).find('option:selected').val();
-      var url = "/opactions";
-      var params = {value: op};
-      $.get(url, params,function(response){ 
-                  //alert(response); 
-          }, 'script'
-          )
-  });
-$("#operation").bind('change load ready', (function(){
+    <div class="span4">
+
+      <%= select_tag "operation", options_for_select(%w{addition substraction multiplication division} )%>
+    </div>
+    <script>
+    $(document).ready(function(){
       var op = $(this).find('option:selected').val();
       var url = "/opactions";
       var params = {value: op};
       $.get(url, params,function(response){ 
-                  //alert(response); 
-          }, 'script'
-          )
-          }
-        ));
-</script>
+                  //alert(response.options0_no);
+                  var x =2; 
+                  //document.options.value = x;
+                }, 'script'
+                )
+    });
+    $("#operation").bind('change load ready', (function(){
+      var op = $(this).find('option:selected').val();
+      var url = "/opactions";
+      var params = {value: op};
+      $.get(url, params,function(response){ 
+          //document.operations.options = 
+          //alert(response.options); 
+        }, 'script'
+        )
+    }
+    ));
+    </script>
 
 
-
-  <div class="span4">
-    <div class="bigtext">
-      problems
+    <div class="span4">
+      <div class="bigtext">
+        problems
+      </div>
     </div>
   </div>
-</div>
-
-<div class="row">
-  <div class="span4">
-    <div class="bigtext">
-      using
-    </div>
-  </div>
-  <div class="span4">
-    <%= select_tag "count", options_for_select(%w{ 1 2 3 4 }) %>
-  </div>
-  <div class="span4">
-    <div class="bigtext">
-      digits
-    </div>
-  </div>
-  <p>
-</div>
-
-<div class="row tablestart"></div>
-<!--div class="tablestart"--> 
-
-
- 
 
   <div class="row">
-  </div>
-  <div class="row">
-  </div>
-  <p> </p>
-  <p></p>
-  <p></p>
-
-  <div class="row">
-
-    <div class="span11 pagination-centered">
-
-      <%= submit_tag "Generate!", class: "btn btn-custom btn-large btn-primary" %>
-
-      <% end%>
+    <div class="span4">
+      <div class="bigtext">
+        using
+      </div>
     </div>
-    <div class="span1"> </div>
+    <div class="span4">
+      <%= select_tag "count", options_for_select(%w{ 1 2 3 4 }) %>
+    </div>
+    <div class="span4">
+      <div class="bigtext">
+        digits
+      </div>
+    </div>
+    <p>
+    </div>
+
+    <div class="row tablestart"></div>
+    <!--div class="tablestart"--> 
+
+
+
+
+    <div class="row">
+    </div>
+    <div class="row">
+    </div>
+    <p> </p>
+    <p></p>
+    <p></p>
+
+    <div class="row">
+
+      <div class="span11 pagination-centered">
+
+        <%= submit_tag "Generate!", class: "btn btn-custom btn-large btn-primary" %>
+
+      </div>
+      <div class="span1"> </div>
+    </div>
+
   </div>
+
+  <% end -%>
 </div>
-<!--
-<p> Generate   
-<form action="/static_pages/new" method="post" id="new">
-<select name="operation">
-  <option value="addition">addition</option>
-  <option value="substraction">substraction</option>
-  <option value="multiplication">multiplication</option>
-  <option value="division">division</option>
-</select> 
 
-using 
-<select name="value">
-  <option value="1">1</option>
-  <option value="2">2</option>
-  <option value="3">3</option>
-  <option value="4">4</option>
-</select> 
 
-digits </p>
-<input type="submit" name="Generate" class="btn btn-large btn-primary">  </input>
-</form>
--->

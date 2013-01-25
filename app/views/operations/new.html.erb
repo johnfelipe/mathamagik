@@ -1,70 +1,65 @@
 
 <div class="container">
 
-<% count = @top.count %>
-<% remaining_spans=2 %>
-<% i = 0 %>
+	<% count = @top.count %>
+	<% remaining_spans=2 %>
+	<% i = 0 %>
 
 <% remaining_spans =2 %> <!-- how many to add to get to TOTAL_SPANS %>
 
 <!--% @top.each_with_index do |element, index| %-->
-
+<% puts "entering rendering" %>
 <% while (i < count) %>
+<% puts "i =" + i.to_s %>
 <div class="row">
-<!-- pluck items from the top till we reach max -->
+	<!-- pluck items from the top till we reach max -->
 	<% for k in (0..MAX_PER_ROW-1) %>
-		<div class="span2">
-				&nbsp;&nbsp;<%= @top[k+i]  %>
-		</div>
-	<%end%>
-	<!-- close that row.. start a new one -->
-	<% remaining_spans= (TOTAL_SPANS - ((MAX_PER_ROW)*SPANS_PER_NUM)) %>
-	<!-- add in the remaining spans to complete the row -->
-	<div class=<%="span"+remaining_spans.to_s%>> </div>
-</div>
+	<div class="span2">
+		<table border-right="3px">
+			<tr>
+				<td>
+				</td>
 
-<!-- the second row.. operator and value -->
-<div class="row">
-	<% for  j in (0..(MAX_PER_ROW-1)) %>
-		<div class ="span2">
-			<script>
-				var numeric = /\d+/.exec(<%=@symbol%>);
-				var decoded= String.fromCharCode(numeric);
-				document.write(decoded);
-			</script>
-			<%= @bottom[j+i]  %>
-		</div>
-	<% end %> <!-- end for -->
-    <div class=<%="span"+remaining_spans.to_s%>></div>
-</div>
+				<% arr = numToArray(@top[k+i]) %>
+				<% for j in (0..arr.length-1) %>
+				<td>
+					<%= arr[j] %>
+				</td>
 
-<!-- Space for the results.. -->
-<div class="row">
-	<% for  j in (0..(MAX_PER_ROW-1)) %>
-		<div class="span2">
-			&nbsp;&nbsp;&#x23af;&#x23af;&#x23af;&#x23af;
-		</div>
-	<%end%>
-	 <div class=<%="span"+remaining_spans.to_s%>></div>
-</div>
+				<% end %>
+				<!--%= @top[k+i]  %-->
+			</tr>
+			<tr>
+				<td>
+					<script>
+					var numeric = /\d+/.exec(<%=@symbol%>);
+					var decoded= String.fromCharCode(numeric);
+					document.write(decoded);
+					</script>
+				</td>
+				<% numtop = numDigits(@top[k+i]) %>
+				<% numbot = numDigits(@bottom[k+i])%>
+				<% numdiff = numtop - numbot %>
+				<% for l in (0..numdiff-1) %>
+				<td> </td>
+				<%end%>
+				<% arr = numToArray(@bottom[k+i]) %>
+				<% for j in (0..arr.length-1) %>
+				<td class="td_bottom">
+					<%= arr[j] %>
+					<!--%= @bottom[k+i] %-->
+				</td>
 
-	<%= javascript_include_tag "application" %>
-
-<div class="row">
-	<!-- adds the answer textarea -->
-	<% for  j in (0..(MAX_PER_ROW-1)) %>	
-		<div class="span2">
-			<% index = j+i%>
-			<div class="iconanswer" id="tick<%=index%>"></div>
-			<div class="answer", "pull-right">
+				<%end%>
+			</tr>
+			<tr>
+				<td class="tanswer">
+			<%index = k+i%>
+			
 				<% tarea = 'ta' + index.to_s %>
 				<%= text_area_tag(tarea, nil) %>
-				<script>
-					
-					
-					//$("#<%=tarea%>").change(function(){
-					//$('#<%=tarea%>').keydown(function(e){
 
+				<script>
 				$("#<%=tarea%>").bind('keydown focusout', function(e){
 				if (e.type === "keydown") {
 					if ((e.which === 9) || (e.which === 13)) {
@@ -91,45 +86,28 @@
 					}, 'script'
 					)
 					}});
-
-				
-
-			
-			
-					
 				</script>
-			</div>
-		</div>
-	<%end%>
-	<div class=<%="span"+remaining_spans.to_s%>></div>
-</div>
-
-<div class="row">
-	<%for  j in (0..(MAX_PER_ROW-1))%>
-		<div class="span2">
-			&nbsp;&nbsp;&#x23af;&#x23af;&#x23af;&#x23af;
-		</div>
-	<%end%>
-	<div class=<%="span"+remaining_spans.to_s%>></div>
-</div>
-
-<div class="row">
-	<div class="span12">		
+			</td>
+			</tr>
+		</table>
 	</div>
+	<%end%>
 </div>
+<%i=i+k+1%>
+<%end%>
 
-<% i=i+k+1%>
 
-<%end %> <!-- to end the top loop -->
+
+
 
 
 <div class="row">
- 		<div class="span3">
- 			<%= link_to 'Solutions', solution_path %>
-		</div>
-		<div class="span3">
- 			<%= link_to 'gimme more', more_path%>
- 		</div>
+	<div class="span3">
+		<%= link_to 'Solutions', solution_path %>
+	</div>
+	<div class="span3">
+		<%= link_to 'gimme more', more_path%>
+	</div>
 </div>
 
 </div>
